@@ -1,0 +1,84 @@
+<form [formGroup]="formulario">
+  <div>
+    <label for="inputNombre">Nombre</label>
+    <input required type="text" id="inputNombre" name="nombre" formControlName="nombre">
+    <div *ngIf="formulario.controls['nombre'].invalid && formulario.controls['nombre'].touched">
+      <p>El campo <strong>nombre</strong> NO puede ser nulo</p>
+    </div>
+  </div>
+  <br>
+  <div>
+    <label for="inputApellido">Apellido</label>
+    <input required type="text" id="inputApellido" name="apellido" formControlName="apellido">
+    <div *ngIf="formulario.controls['apellido'].invalid && formulario.controls['apellido'].touched">
+      <p>El campo <strong>apellido</strong> NO puede ser nulo</p>
+    </div>
+  </div>
+  <br>
+  <div>
+    <label for="inputEdad">Edad</label>
+    <input required type="text" id="inputEdad" name="edad" formControlName="edad">
+    <div *ngIf="formulario.controls['edad'].invalid && formulario.controls['edad'].touched">
+      <p>El campo <strong>edad</strong> NO puede ser nulo</p>
+    </div>
+  </div>
+  <br>
+  <div>
+    <label for="inputDocumento">Documento</label>
+    <input required type="text" id="inputDocumento" name="documento" formControlName="documento">
+    <div *ngIf="formulario.controls['documento'].invalid && formulario.controls['documento'].touched">
+      <p>El campo <strong>documento</strong> NO puede ser nulo</p>
+    </div>
+    <div
+      *ngIf="formulario.controls['documento'].invalid && formulario.controls['documento'].hasError('documentoExiste')">
+      <p>Ya existe este documento</p>
+    </div>
+  </div>
+  <br>
+  <div>
+    <label for="inputSueldo">Sueldo</label>
+    <input required type="text" id="inputSueldo" name="sueldo" formControlName="sueldo">
+    <div *ngIf="formulario.controls['sueldo'].invalid && formulario.controls['sueldo'].touched">
+      <p>El campo <strong>sueldo</strong> NO puede ser nulo</p>
+    </div>
+  </div>
+  <br>
+  <div>
+    <label for="chkPorcentaje">Tiene porcentaje?</label>
+    <input type="checkbox" id="chkPorcentaje" (change)="checkPorcentaje($event)">
+  </div>
+  <br>
+  <div #inputPorcentaje style="display: none;">
+    <label for="inputPorcentaje">Porcentaje</label>
+    <input type="text" id="inputPorcentaje" name="porcentaje" formControlName="porcentaje">
+    <div *ngIf="formulario.controls['porcentaje'].invalid && formulario.controls['porcentaje'].touched">
+      <p>El campo <strong>porcentaje</strong> NO puede ser nulo</p>
+    </div>
+  </div>
+  <br>
+
+  <div>
+    <label for="selectPais">País</label>
+    <select required id="selectPais" name="paisId" formControlName="paisId">
+      <option *ngFor="let pais of listadoPaises" [value]="pais.id">{{pais.nombre}}</option>
+    </select>
+    <div *ngIf="formulario.controls['paisId'].invalid && formulario.controls['paisId'].touched">
+      <p>El campo <strong>país</strong> NO puede ser nulo</p>
+    </div>
+  </div>
+  <br>
+  <div>
+    <label for="selectCiudad">Ciudad</label>
+    <select required id="selectCiudad" name="ciudadId" formControlName="ciudadId">
+      <option *ngFor="let ciudad of listadoCiudades" [value]="ciudad.id">{{ciudad.nombre}}</option>
+    </select>
+    <div *ngIf="formulario.controls['ciudadId'].invalid && formulario.controls['ciudadId'].touched">
+      <p>El campo <strong>ciudad</strong> NO puede ser nulo</p>
+    </div>
+  </div>
+  <br>
+  <div>
+    <button (click)="guardar()">Guardar</button>
+    <button (click)="cancelar()">Cancelar</button>
+  </div>
+</form>
